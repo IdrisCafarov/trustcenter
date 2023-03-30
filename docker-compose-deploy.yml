@@ -34,6 +34,8 @@ services:
     restart: always
     build:
       context: .
+      args:
+        - DEV=false
     command: celery -A app worker --loglevel=INFO
     volumes:
       - ./app:/app
@@ -45,7 +47,6 @@ services:
     depends_on:
       - db
       - redis
-      - app
 
 
 
