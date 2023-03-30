@@ -44,6 +44,7 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - db
       - redis
