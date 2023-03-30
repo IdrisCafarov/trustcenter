@@ -34,8 +34,6 @@ services:
     restart: always
     build:
       context: .
-      args:
-        - DEV=true
     command: celery -A app worker --loglevel=INFO
     volumes:
       - ./app:/app
