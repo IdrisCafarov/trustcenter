@@ -161,12 +161,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'idris.ceferov244@gmail.com'
 EMAIL_HOST_PASSWORD = 'kkbbqkjhhfnhwhvk'
 EMAIL_PORT = 465
-# ACCOUNT_EMAIL_VERIFICATION = "none"
 
 
 
-#celery
-CELERY_BROKER_URL = "redis://redis:6379"
-CELERY_RESULT_BACKEND = "redis://redis:6379"
 
 
