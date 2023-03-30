@@ -1,3 +1,9 @@
+upstream celery {
+    server ${CELERY_HOST}:${CELERY_PORT};
+}
+
+
+
 server {
     listen ${LISTEN_PORT};
 
@@ -10,4 +16,13 @@ server {
         include                 /etc/nginx/uwsgi_params;
         client_max_body_size    10M;
     }
+
+    location /celery {
+        proxy_pass              http://celery;
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+    }
+
 }
