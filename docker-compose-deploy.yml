@@ -14,6 +14,7 @@ services:
       - DB_PASS=${DB_PASS}
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+
     depends_on:
       - db
       - redis
@@ -48,10 +49,11 @@ services:
       - DB_PASS=${DB_PASS}
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    ports:
+      - 8001:8001
     depends_on:
       - db
       - redis
-
 
 
   proxy:
