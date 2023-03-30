@@ -10,6 +10,7 @@ services:
       - static-data:/vol/web
     environment:
       - DB_HOST=db
+      - DB_PORT=5432
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
@@ -27,6 +28,7 @@ services:
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
       - POSTGRES_PASSWORD=${DB_PASS}
 
   redis:
@@ -39,9 +41,13 @@ services:
     volumes:
       - ./app:/app
     environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
+    - DB_HOST=db
+    - DB_PORT=5432
+    - DB_NAME=${DB_NAME}
+    - DB_USER=${DB_USER}
+    - DB_PASS=${DB_PASS}
+    - CELERY_BROKER_URL=redis://redis:6379/0
+    - DJANGO_SETTINGS_MODULE=app.settings
     depends_on:
       - db
       - redis
