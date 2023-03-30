@@ -163,7 +163,7 @@ EMAIL_PORT = 465
 
 
 #celery
-CELERY_RESULT_BACKEND = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://95.216.165.58:6379"
 
 
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://redis:6379/0')  # Change 'localhost' to 'redis'
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://95.216.165.58:6379/0')  # Change 'localhost' to 'redis'
