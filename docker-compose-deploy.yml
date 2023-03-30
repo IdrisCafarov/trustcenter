@@ -1,3 +1,4 @@
+
 version: "3.3"
 
 services:
@@ -34,20 +35,17 @@ services:
     restart: always
     build:
       context: .
-      args:
-        - DEV=true
-    command: celery -A app worker --loglevel=INFO
+    command: celery -A app worker -l info
     volumes:
       - ./app:/app
     environment:
-      - DB_HOST=db
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - CELERY_BROKER_URL=redis://redis:6379/0
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
     depends_on:
       - db
       - redis
+      - app
 
 
 
