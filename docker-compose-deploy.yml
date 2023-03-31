@@ -46,7 +46,7 @@ services:
     - DB_NAME=${DB_NAME}
     - DB_USER=${DB_USER}
     - DB_PASS=${DB_PASS}
-    - CELERY_BROKER_URL=redis://95.216.165.58:6379/0
+    - CELERY_BROKER_URL=redis://redis:6379/0
     - DJANGO_SETTINGS_MODULE=app.settings
     depends_on:
       - db
