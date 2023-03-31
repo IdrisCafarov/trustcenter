@@ -41,7 +41,7 @@ services:
     volumes:
       - ./app:/app
     environment:
-    - DB_HOST=95.216.165.58
+    - DB_HOST=db
     - DB_PORT=5432
     - DB_NAME=${DB_NAME}
     - DB_USER=${DB_USER}
