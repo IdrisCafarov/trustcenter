@@ -53,7 +53,7 @@ class About(models.Model):
 
 class SectionAbout(models.Model):
     about = models.ForeignKey(About, on_delete=models.CASCADE, related_name="section")
-    image = models.ImageField(upload_to="section_images")
+    image = models.FileField(upload_to="section_images",null=True)
     text = models.TextField()
 
 
@@ -65,7 +65,7 @@ class SectionAbout(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=150)
     text = models.TextField()
-    image = models.ImageField(upload_to="service_images")
+    image = models.FileField(upload_to="service_images",null=True)
 
 
     def __str__(self):
@@ -88,7 +88,7 @@ class PortfolioCategory(models.Model):
 class Portfolio(models.Model):
     category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE, related_name="portfolio", null=True)
     name = models.CharField(max_length=150)
-    main_image = models.ImageField(upload_to="portfolio_images",null=True)
+    main_image = models.FileField(upload_to="portfolio_images",null=True)
     video = models.CharField(max_length=2000,null=True)
     service = models.ManyToManyField(Service,related_name="portfolio")
     text = models.TextField(null=True)
@@ -100,7 +100,7 @@ class Portfolio(models.Model):
 
 
 class PortfolioImages(models.Model):
-    image = models.ImageField(upload_to="portfolio_images")
+    image = models.FileField(upload_to="portfolio_images",null=True)
     portfolio = models.ForeignKey(Portfolio,on_delete=models.CASCADE, related_name="image")
 
 
@@ -108,7 +108,7 @@ class PortfolioImages(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=150)
-    image = models.ImageField(upload_to="author_pp")
+    image = models.FileField(upload_to="author_pp",null=True)
 
     def __str__(self):
         return self.name
@@ -125,7 +125,7 @@ class Tag(models.Model):
 class Blog(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="blog",null=True)
     service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="blog",null=True)
-    main_image = models.ImageField(upload_to="blog_image",null=True)
+    main_image = models.FileField(upload_to="blog_image",null=True)
     title = models.CharField(max_length=150,null=True)
     text = RichTextField(null=True)
     tag = models.ManyToManyField(Tag, related_name="blog")

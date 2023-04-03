@@ -65,7 +65,8 @@ class PopTagAPIView(APIView):
     def get(self, request):
         blog = Blog.get_most_clicked()
         tag = Tag.objects.all()
-        serializer1 = BlogSerializer(blog)
+        serializer1 = BlogSerializer(blog,context=
+        {'request': request})
         serializer2 = TagSerializer(tag, many=True)
         data = {'popular_blog': serializer1.data, 'tags': serializer2.data}
         return Response(data)
@@ -116,10 +117,16 @@ class ContactAboutView(viewsets.ModelViewSet):
     serializer_class  = ContactAboutSerializer
 
 
-class AboutView(viewsets.ModelViewSet):
-    queryset = About.objects.all()
-    parser_classes = (MultiPartParser, FormParser)
-    serializer_class = AboutSerializer
+class AboutView(generics.ListAPIView):
+    def get(self, request):
+        # about = Blog.get_most_clicked()
+        about = About.objects.all().first()
+        # serializer1 = BlogSerializer(blog)
+        serializer2 = AboutSerializer(about,context=
+        {'request': request})
+        data = {'about': serializer2.data}
+        return Response(data)
+
 
 
 
