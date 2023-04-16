@@ -98,8 +98,8 @@ class ServiceDetailView(viewsets.ModelViewSet):
         blogs = Blog.objects.filter(service=service)
 
         serializer1 = self.get_serializer(instance)
-        serializer2 = PortfolioSerializer(portfolios, many=True)
-        serializer3 = BlogSerializer(blogs, many=True)
+        serializer2 = PortfolioSerializer(portfolios, many=True,context={'request': request})
+        serializer3 = BlogSerializer(blogs, many=True, context={'request': request})
         data = {'service': serializer1.data, 'portfolio': serializer2.data, 'related_blogs':serializer3.data}
         return Response(data)
 
@@ -171,7 +171,10 @@ class BlogSearchViewSet(generics.ListAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['title',]
 
-
+class OrderView(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    parser_classes = (MultiPartParser, FormParser)
+    serializer_class = OrderSerializer
 
 
 ############## send mail #########################

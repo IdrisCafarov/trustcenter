@@ -164,3 +164,41 @@ class Subscribe(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+class Order(models.Model):
+    currentStage = models.CharField(max_length=3000)
+    chooseWebSite = models.CharField(max_length=3000)
+    professionalNeed = models.CharField(max_length=3000)
+    duration = models.CharField(max_length=3000)
+    #########
+    name = models.CharField(max_length=3000)
+    surname = models.CharField(max_length=3000)
+    email = models.EmailField()
+    phone = models.CharField(max_length=3000)
+
+
+    ####################
+    description = models.TextField()
+    projectDeatils = models.TextField()
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = "Order"
+        verbose_name_plural = "Orders"
+
+
+@receiver(post_save, sender=Order)
+def delete_free_time(sender, instance, created, **kwargs):
+    if created:
+        send_mail(
+            'Order yarandi',
+            f'Current Stage: {instance.currentStage}\nChoose WebSite: {instance.chooseWebSite}\nprofessional Need: {instance.professionalNeed}\nDuration : {instance.duration}/nCustomer Informations\nCustomer: {instance.name} {instance.surname}\nEmail: {instance.email}\nPhone: {instance.phone}\n\n\nAbout Project\n\nDescription: {instance.description}\nProject Deatils : {instance.projectDeatils}',
+            settings.EMAIL_HOST_USER,
+            ['ravan.xankisiyev.032@gmail.com'],
+            fail_silently=True,
+        )
+

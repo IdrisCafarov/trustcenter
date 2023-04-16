@@ -124,7 +124,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
     # image = PortfolioImagesSerializer(many=True)
     class Meta:
         model = Portfolio
-        fields = ['name','main_image','video']
+        fields = ['id','name','main_image','video']
 
 
 
@@ -132,4 +132,12 @@ class PortfolioDetailSerializer(serializers.ModelSerializer):
     image = PortfolioImagesSerializer(many=True)
     class Meta:
         model = Portfolio
+        fields = '__all__'
+
+
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
         fields = '__all__'

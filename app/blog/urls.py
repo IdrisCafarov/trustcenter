@@ -14,6 +14,7 @@ urlpatterns = [
     path("achivement/", AchivementView.as_view({'get': 'list',}), name="achivement"),
     path("send_email/", send_email, name="send_email"),
     path("subscribe/", SubscribeView.as_view({'post': 'create',}), name="subscribe"),
+    path("order/", OrderView.as_view({'post': 'create',}), name="order"),
     path("portfolio/", PortfolioView.as_view({'get': 'list',}), name="portfolio"),
     path("portfolio/<pk>/", PortfolioDetailView.as_view({'get': 'retrieve',}), name="portfolio_detail"),
     path("blog_search/", BlogSearchViewSet.as_view(), name="blog_search"),

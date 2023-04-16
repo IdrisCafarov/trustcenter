@@ -9,6 +9,8 @@ admin.site.register(Author)
 admin.site.register(Service)
 admin.site.register(Subscribe)
 admin.site.register(PortfolioCategory)
+admin.site.register(Order)
+
 
 
 @admin.register(Contact)
@@ -68,3 +70,5 @@ class PortfolioImagesInline(admin.StackedInline):
 class AdminPortfolioCategory(admin.ModelAdmin):
     inlines = [PortfolioImagesInline]
     # list_display = ['name','project_count']
+
+
