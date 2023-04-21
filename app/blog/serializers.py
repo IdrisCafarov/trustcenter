@@ -145,4 +145,4 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ['currentStage','chooseWebSite','professionalNeed','duration','name','surname','email','phone','description','projectDeatils']
