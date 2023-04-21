@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from blog.serializers import *
-from rest_framework.parsers import MultiPartParser,FormParser
+from rest_framework.parsers import MultiPartParser,FormParser,JSONParser
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
@@ -172,7 +172,7 @@ class BlogSearchViewSet(generics.ListAPIView):
 
 class OrderView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser,JSONParser)
     serializer_class = OrderSerializer
 
 
