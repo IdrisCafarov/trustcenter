@@ -138,6 +138,11 @@ class PortfolioDetailSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+
+    professionalNeed = serializers.ListField(
+        child=serializers.CharField()
+    )
+
     class Meta:
         model = Order
         fields = '__all__'

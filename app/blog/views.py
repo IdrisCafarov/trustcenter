@@ -65,8 +65,7 @@ class PopTagAPIView(APIView):
     def get(self, request):
         blog = Blog.get_most_clicked()
         tag = Tag.objects.all()
-        serializer1 = BlogSerializer(blog,context=
-        {'request': request})
+        serializer1 = BlogSerializer(blog)
         serializer2 = TagSerializer(tag, many=True)
         data = {'popular_blog': serializer1.data, 'tags': serializer2.data}
         return Response(data)
@@ -98,7 +97,7 @@ class ServiceDetailView(viewsets.ModelViewSet):
         blogs = Blog.objects.filter(service=service)
 
         serializer1 = self.get_serializer(instance)
-        serializer2 = PortfolioSerializer(portfolios, many=True,context={'request': request})
+        serializer2 = PortfolioSerializer(portfolios, many=True)
         serializer3 = BlogSerializer(blogs, many=True, context={'request': request})
         data = {'service': serializer1.data, 'portfolio': serializer2.data, 'related_blogs':serializer3.data}
         return Response(data)
@@ -122,8 +121,7 @@ class AboutView(generics.ListAPIView):
         # about = Blog.get_most_clicked()
         about = About.objects.all().first()
         # serializer1 = BlogSerializer(blog)
-        serializer2 = AboutSerializer(about,context=
-        {'request': request})
+        serializer2 = AboutSerializer(about)
         data = {'about': serializer2.data}
         return Response(data)
 
@@ -143,6 +141,7 @@ class SubscribeView(viewsets.ModelViewSet):
 
 
 class PortfolioView(viewsets.ModelViewSet):
+
     queryset = Portfolio.objects.all()
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = PortfolioSerializer
@@ -175,6 +174,15 @@ class OrderView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = OrderSerializer
+
+    def post(self, request):
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            field_values = serializer.validated_data['professionalNeed']
+            # Process the list of field values here
+            return Response({'success': True})
+        else:
+            return Response(serializer.errors, status=400)
 
 
 ############## send mail #########################
