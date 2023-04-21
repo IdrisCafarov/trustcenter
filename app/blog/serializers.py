@@ -146,3 +146,11 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['currentStage','chooseWebSite','professionalNeed','duration','name','surname','email','phone','description','projectDeatils']
+
+    def create(self, validated_data):
+        field_values = validated_data.pop('professionalNeed')
+        professional_need_str = ','.join(field_values)
+        order = Order.objects.create(professionalNeed=professional_need_str, **validated_data)
+        return order
+
+

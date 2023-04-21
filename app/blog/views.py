@@ -175,14 +175,6 @@ class OrderView(viewsets.ModelViewSet):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = OrderSerializer
 
-    def post(self, request):
-        serializer = OrderSerializer(data=request.data)
-        if serializer.is_valid():
-            field_values = serializer.validated_data['professionalNeed']
-            # Process the list of field values here
-            return Response({'success': True})
-        else:
-            return Response(serializer.errors, status=400)
 
 
 ############## send mail #########################
