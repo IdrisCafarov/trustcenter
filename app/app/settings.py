@@ -146,7 +146,7 @@ REST_FRAMEWORK = {
 
 
 
-CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com']
+CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com','localhost']
 
 
 CSRF_COOKIE_SECURE = True
