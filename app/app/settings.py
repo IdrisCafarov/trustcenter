@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['www.admin.trustcenterholding.com','95.216.165.58','admin.trustcenterholding.com','localhost']
 
 
 # Application definition
