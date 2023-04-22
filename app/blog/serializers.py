@@ -1,6 +1,8 @@
 from blog.models import *
 
 from rest_framework import serializers
+import json
+
 
 
 
@@ -139,18 +141,34 @@ class PortfolioDetailSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
 
-    professionalNeed = serializers.ListField(
-        child=serializers.CharField()
-    )
+    # professionalNeed = serializers.ListField(
+    #     child=serializers.CharField()
+    # )
 
     class Meta:
         model = Order
         fields = ['currentStage','chooseWebSite','professionalNeed','duration','name','surname','email','phone','description','projectDeatils']
 
-    def create(self, validated_data):
-        field_values = validated_data.pop('professionalNeed')
-        professional_need_str = ','.join(field_values)
-        order = Order.objects.create(professionalNeed=professional_need_str, **validated_data)
-        return order
+
+    # def to_internal_value(self, data):
+    #     if 'professionalNeed' in data:
+    #         input_data = data['professionalNeed']
+    #         if isinstance(input_data, str):
+    #             try:
+    #                 # Attempt to deserialize the input data from JSON
+    #                 deserialized_data = json.loads(input_data)
+    #             except json.JSONDecodeError:
+    #                 raise serializers.ValidationError('Invalid input format')
+    #         else:
+    #             # If the input data is already a list, use it directly
+    #             deserialized_data = input_data
+    #         data['professionalNeed'] = deserialized_data
+    #     return super().to_internal_value(data)
+
+    # def create(self, validated_data):
+    #     field_values = validated_data.pop('professionalNeed')
+    #     professional_need_str = ','.join(field_values)
+    #     order = Order.objects.create(professionalNeed=professional_need_str, **validated_data)
+    #     return order
 
 
