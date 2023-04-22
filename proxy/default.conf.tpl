@@ -1,5 +1,5 @@
 server {
-    listen 80;
+    listen 81;
     server_name www.admin.trustcenterholding.com 95.216.165.58 admin.trustcenterholding.com localhost;
 
     location /static {
