@@ -147,7 +147,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['currentStage','chooseWebSite','professionalNeed','duration','name','surname','email','phone','description','projectDeatils']
+        fields = '__all__'
 
 
     # def to_internal_value(self, data):
