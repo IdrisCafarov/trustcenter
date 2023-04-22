@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -148,6 +149,8 @@ CORS_ORIGIN_WHITELIST = [
     'https://admin.trustcenterholding.com',
     'https://trustcenterholding.com',
 ]
+
+CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com','https://trustcenterholding.com']
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
