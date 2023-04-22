@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = ['www.admin.trustcenterholding.com','95.216.165.58','admin.trustcenterholding.com','127.0.0.1','localhost']
 
@@ -145,12 +145,8 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ORIGIN_WHITELIST = [
-    'https://admin.trustcenterholding.com',
-    'https://trustcenterholding.com',
-]
 
-CSRF_TRUSTED_ORIGINS=['https://*.trustcenterholding.com']
+CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com']
 
 
 CSRF_COOKIE_SECURE = True
