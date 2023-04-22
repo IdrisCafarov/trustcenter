@@ -150,7 +150,7 @@ CORS_ORIGIN_WHITELIST = [
     'https://trustcenterholding.com',
 ]
 
-CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com','https://trustcenterholding.com']
+CSRF_TRUSTED_ORIGINS=['https://*.trustcenterholding.com']
 
 
 CSRF_COOKIE_SECURE = True
