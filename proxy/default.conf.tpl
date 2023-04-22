@@ -1,5 +1,5 @@
 server {
-    listen 81;
+    listen ${LISTEN_PORT};
     server_name www.admin.trustcenterholding.com 95.216.165.58 admin.trustcenterholding.com localhost;
 
     location /static {
