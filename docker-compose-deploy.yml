@@ -62,7 +62,7 @@ services:
     depends_on:
       - app
     ports:
-      - 81:8000
+      - 80:8000
     volumes:
       - static-data:/vol/static
 
