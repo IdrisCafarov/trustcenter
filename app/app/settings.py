@@ -153,6 +153,9 @@ CORS_ORIGIN_WHITELIST = [
 CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com','https://trustcenterholding.com']
 
 
+CSRF_COOKIE_SECURE = True
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'idris.ceferov244@gmail.com'
 SERVER_EMAIL = 'idris.ceferov244@gmail.com'
