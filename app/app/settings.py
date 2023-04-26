@@ -144,10 +144,9 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com', 'https://localhost', 'http://localhost']
 
-
-CSRF_TRUSTED_ORIGINS=['https://admin.trustcenterholding.com','localhost']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 CSRF_COOKIE_SECURE = True
 
